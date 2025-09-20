@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - GuruSetu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Authentication Check -->
+    <div id="authLoader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p class="text-gray-600">Loading Event Details...</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" style="display: none;">
+        <!-- GuruSetu Banner -->
+        <div class="relative h-48 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+            <img src="https://img.freepik.com/free-vector/gradient-class-2023-illustration_52683-111100.jpg?semt=ais_incoming&w=740&q=80" 
+                 alt="Alumni Banner" 
+                 class="w-full h-full object-cover opacity-60">
+            
+            <!-- Gradient overlays for depth -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-indigo-900/60 to-purple-900/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+            
+            <!-- Content -->
+            <div class="absolute inset-0 flex items-center justify-between px-8 md:px-16">
+                <!-- Left side - Main content -->
+                <div class="flex-1">
+                    <div class="max-w-2xl">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-3 text-white leading-tight">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-indigo-200">GuruSetu</span>
+                        </h1>
+                        <p class="text-lg md:text-xl font-medium text-blue-100 mb-4 leading-relaxed">
+                            Empowering Alumni & Students to 
+                            <span class="text-yellow-300 font-semibold">Connect</span>, 
+                            <span class="text-green-300 font-semibold">Learn</span>, and 
+                            <span class="text-pink-300 font-semibold">Grow Together</span>
+                        </p>
+                        <div class="flex items-center space-x-4 text-sm text-blue-200">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span>2,500+ Active Alumni</span>
+                            </div>
+                            <div class="hidden md:flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                <span>5,000+ Students</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right side - Donation section (Alumni only) -->
+                <div id="donationSection" class="hidden md:flex flex-col items-end space-y-4">
+                    <div class="make-a-gift-card">
+                        <p class="text-white text-sm font-medium mb-3">Support Our Community</p>
+                        <button class="donation-btn make-a-gift-btn">
+                            <i class="fas fa-heart"></i>
+                            MAKE A GIFT
+                        </button>
+                        <p class="make-a-gift-subtext">Help us grow stronger together</p>
+                    </div>
+                    
+                    <!-- Quick stats -->
+                    <div class="bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg p-3 text-center">
+                        <div class="text-white text-lg font-bold">₹2.3M+</div>
+                        <div class="text-blue-200 text-xs">Scholarships Funded</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative elements -->
+            <div class="absolute top-4 left-4 w-16 h-16 border-2 border-white/20 rounded-full animate-pulse hidden lg:block"></div>
+            <div class="absolute bottom-4 right-4 w-12 h-12 border border-yellow-400/30 rounded-full animate-bounce hidden lg:block"></div>
+            
+            <!-- Mobile donation button (Alumni only) -->
+            <div id="mobileDonationSection" class="md:hidden absolute top-4 right-4">
+                <button class="donation-btn make-a-gift-btn text-sm py-2 px-4">
+                    <i class="fas fa-heart"></i>
+                    MAKE A GIFT
+                </button>
+            </div>
+        </div>
+
+        <!-- Blue Navigation Bar -->
+        <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 shadow-lg sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 bg-white rounded-full flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-blue-600 text-lg"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-white">GuruSetu</span>
+                        
+                        <!-- Navigation Links with Events Dropdown -->
+                        <nav class="hidden md:ml-10 md:flex items-center space-x-6">
+                            <a href="index.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                            <div class="relative group">
+                                <a href="events.html" class="inline-flex items-center text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-colors">
+                                    Events
+                                    <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition">
+                                    <a href="events.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Events</a>
+                                    <a href="events.html?filter=upcoming" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Upcoming Events</a>
+                                    <a href="events.html?filter=current" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Current Events</a>
+                                    <a href="events.html?filter=past" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Past Events</a>
+                                    <div class="border-t my-1"></div>
+                                    <a href="gallery.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Gallery</a>
+                                </div>
+                            </div>
+                            <a href="mentors.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Mentors</a>
+                            <a href="communities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Communities</a>
+                            <a href="opportunities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Opportunities</a>
+                            <a href="drishti.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Drishti</a>
+                        </nav>
+                    </div>
+
+                    <!-- Search and User Actions -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Search -->
+                        <div class="relative hidden sm:block">
+                            <input type="text" placeholder="Search..." 
+                                   class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 w-64 transition-all">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                                <i class="fas fa-search text-blue-200"></i>
+                            </div>
+                        </div>
+
+                        <!-- Notifications -->
+                        <button class="relative p-2 text-blue-200 hover:text-white hover:bg-white/10 rounded-full transition-colors">
+                            <i class="fas fa-bell text-lg"></i>
+                            <span class="absolute top-0 right-0 block h-2 w-2 bg-red-500 rounded-full"></span>
+                        </button>
+
+                        <!-- User Profile Dropdown -->
+                        <div class="relative">
+                            <button id="userMenuButton" class="flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 transition-colors">
+                                <img id="userProfileImage" src="" alt="Profile" class="h-8 w-8 rounded-full border-2 border-white/20">
+                                <span id="userDisplayName" class="hidden sm:block text-sm font-medium text-white"></span>
+                                <i class="fas fa-chevron-down text-blue-200 text-xs"></i>
+                            </button>
+                            
+                            <!-- Dropdown Menu -->
+                            <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 hidden">
+                                <div class="px-4 py-2 border-b border-gray-100">
+                                    <p id="dropdownUserName" class="text-sm font-medium text-gray-900"></p>
+                                    <p id="dropdownUserType" class="text-xs text-gray-500"></p>
+                                </div>
+                                <a href="profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                    <i class="fas fa-user mr-3"></i>Profile
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                    <i class="fas fa-cog mr-3"></i>Settings
+                                </a>
+                                <div class="border-t border-gray-100 my-1"></div>
+                                <button id="logoutButton" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                    <i class="fas fa-sign-out-alt mr-3"></i>Sign out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+                <nav class="flex items-center space-x-2 text-sm">
+                    <a href="index.html" class="text-blue-600 hover:text-blue-700">Home</a>
+                    <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    <a href="events.html" class="text-blue-600 hover:text-blue-700">Events</a>
+                    <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    <span class="text-gray-500" id="breadcrumbEventTitle">Event Details</span>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Event Details Content -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div id="eventDetailsContainer" class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <!-- Event details will be populated by JavaScript -->
+            </div>
+
+            <!-- Related Events -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Events</h2>
+                <div id="relatedEvents" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Related events will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/event-details.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drishti – Alumni Map | GuruSetu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Leaflet styles -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="alumini-map/map.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Auth Loader -->
+  <div id="authLoader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Loading Drishti...</p>
+    </div>
+  </div>
+
+  <div id="mainApp" style="display:none;">
+    <!-- Banner (same as platform) -->
+    <div class="relative h-48 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+      <img src="https://img.freepik.com/free-vector/gradient-class-2023-illustration_52683-111100.jpg?semt=ais_incoming&w=740&q=80" class="w-full h-full object-cover opacity-60" />
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-indigo-900/60 to-purple-900/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+      <div class="absolute inset-0 flex items-center justify-between px-8 md:px-16">
+        <div class="flex-1">
+          <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-3 text-white leading-tight">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-indigo-200">GuruSetu</span>
+            </h1>
+            <p class="text-lg md:text-xl font-medium text-blue-100 mb-4 leading-relaxed">
+              Explore alumni across the globe with <span class="font-semibold text-yellow-300">Drishti</span>.
+            </p>
+            <div class="flex items-center space-x-4 text-sm text-blue-200">
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span>2,500+ Active Alumni</span>
+              </div>
+              <div class="hidden md:flex items-center space-x-2">
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <span>5,000+ Students</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donation section (Alumni only) -->
+        <div id="donationSection" class="hidden md:flex flex-col items-end space-y-4">
+          <div class="make-a-gift-card">
+            <p class="text-white text-sm font-medium mb-3">Support Our Community</p>
+            <button class="donation-btn make-a-gift-btn">
+              <i class="fas fa-heart"></i>
+              MAKE A GIFT
+            </button>
+            <p class="make-a-gift-subtext">Help us grow stronger together</p>
+          </div>
+          <div class="bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg p-3 text-center">
+            <div class="text-white text-lg font-bold">₹2.3M+</div>
+            <div class="text-blue-200 text-xs">Scholarships Funded</div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile donation button (Alumni only) -->
+      <div id="mobileDonationSection" class="md:hidden absolute top-4 right-4">
+        <button class="donation-btn make-a-gift-btn text-sm py-2 px-4">
+          <i class="fas fa-heart"></i>
+          MAKE A GIFT
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation (platform-consistent) -->
+    <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 shadow-lg sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <div class="h-10 w-10 bg-white rounded-full flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-blue-600 text-lg"></i>
+            </div>
+            <a href="index.html" class="ml-3 text-xl font-bold text-white">GuruSetu</a>
+            <nav class="hidden md:ml-10 md:flex items-center space-x-6">
+              <a href="index.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium">Home</a>
+              <a href="events.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium">Events</a>
+              <a href="mentors.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium">Mentors</a>
+              <a href="communities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium">Communities</a>
+              <a href="opportunities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium">Opportunities</a>
+              <span class="text-white px-3 py-2 text-sm font-semibold">Drishti</span>
+            </nav>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button id="userMenuButton" class="flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 transition-colors">
+                <img id="userProfileImage" src="" alt="Profile" class="h-8 w-8 rounded-full border-2 border-white/20" />
+                <span id="userDisplayName" class="hidden sm:block text-sm font-medium text-white"></span>
+                <i class="fas fa-chevron-down text-blue-200 text-xs"></i>
+              </button>
+              <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 hidden">
+                <div class="px-4 py-2 border-b border-gray-100">
+                  <p id="dropdownUserName" class="text-sm font-medium text-gray-900"></p>
+                  <p id="dropdownUserType" class="text-xs text-gray-500"></p>
+                </div>
+                <a href="profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"><i class="fas fa-user mr-3"></i>Profile</a>
+                <button id="logoutButton" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="fas fa-sign-out-alt mr-3"></i>Sign out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toolbar: search + view mode -->
+    <div class="bg-white shadow border-b border-gray-200 z-30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-3 flex flex-col md:flex-row md:items-center gap-3">
+          <div class="flex-1 min-w-0">
+            <div class="bg-white border border-gray-300 rounded-lg flex items-center gap-2 px-3 py-2">
+              <i class="fas fa-search text-gray-500"></i>
+              <input id="mapSearch" type="text" placeholder="Search city (e.g., London, Tokyo)" class="w-full outline-none" />
+            </div>
+          </div>
+          <div class="flex items-center flex-wrap gap-3">
+            <label class="text-xs text-gray-600">View
+              <select id="viewMode" class="input-minimal w-40 ml-2">
+                <option value="density">By density</option>
+                <option value="city">By city</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map container -->
+    <div id="map" class="w-full h-[calc(100vh-16.5rem)]"></div>
+  </div>
+
+  <!-- Platform + Map scripts -->
+  <script src="js/auth.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <!-- Reuse the alumni-map implementation -->
+  <script src="alumini-map/map.js"></script>
+</body>
+</html>

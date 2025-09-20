@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course - GuruSetu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50">
+  <div id="authLoader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Loading Course...</p>
+    </div>
+  </div>
+
+  <div id="mainApp" style="display:none;">
+    <!-- GuruSetu Banner -->
+    <div class="relative h-48 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+      <img src="https://img.freepik.com/free-vector/gradient-class-2023-illustration_52683-111100.jpg?semt=ais_incoming&w=740&q=80" alt="Alumni Banner" class="w-full h-full object-cover opacity-60" />
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-indigo-900/60 to-purple-900/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+      <div class="absolute inset-0 flex items-center justify-between px-8 md:px-16">
+        <div class="flex-1">
+          <div class="max-w-2xl">
+            <a href="mentors.html" class="inline-flex items-center text-blue-200 hover:text-white text-sm mb-2"><i class="fas fa-arrow-left mr-2"></i>Back to Mentors</a>
+            <h1 id="courseTitleHero" class="text-4xl md:text-5xl font-bold mb-2 text-white leading-tight">Course</h1>
+            <p id="courseMetaHero" class="text-lg font-medium text-blue-100">Mentor • Lessons • Rating</p>
+          </div>
+        </div>
+        <div id="donationSection" class="hidden md:flex flex-col items-end space-y-4">
+          <div class="make-a-gift-card">
+            <p class="text-white text-sm font-medium mb-3">Support Our Community</p>
+            <button class="donation-btn make-a-gift-btn">
+              <i class="fas fa-heart"></i>
+              MAKE A GIFT
+            </button>
+            <p class="make-a-gift-subtext">Help us grow stronger together</p>
+          </div>
+        </div>
+      </div>
+      <div id="mobileDonationSection" class="md:hidden absolute top-4 right-4">
+        <button class="donation-btn make-a-gift-btn text-sm py-2 px-4">
+          <i class="fas fa-heart"></i>
+          MAKE A GIFT
+        </button>
+      </div>
+    </div>
+
+    <!-- Blue Navigation Bar with dropdown -->
+    <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <div class="h-10 w-10 bg-white rounded-full flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-blue-600 text-lg"></i>
+            </div>
+            <span class="ml-3 text-xl font-bold text-white">GuruSetu</span>
+            <nav class="hidden md:ml-10 md:flex items-center space-x-6">
+              <a href="index.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Home</a>
+              <div class="relative group">
+                <a href="events.html" class="inline-flex items-center text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Events<i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+                <div class="absolute left-0 top-full z-50 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 hidden group-hover:block">
+                  <a href="events.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Events</a>
+                  <a href="events.html?filter=upcoming" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Upcoming Events</a>
+                  <a href="events.html?filter=current" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Current Events</a>
+                  <a href="events.html?filter=past" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Past Events</a>
+                  <div class="border-t my-1"></div>
+                  <a href="gallery.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Gallery</a>
+                </div>
+              </div>
+              <a href="mentors.html" class="text-white px-3 py-2 text-sm font-medium">Mentors</a>
+              <a href="communities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Communities</a>
+              <a href="opportunities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Opportunities</a>
+              <a href="drishti.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Drishti</a>
+            </nav>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative hidden sm:block">
+              <input type="text" placeholder="Search courses..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 w-72 transition-all" />
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center"><i class="fas fa-search text-blue-200"></i></div>
+            </div>
+            <button class="relative p-2 text-blue-200 hover:text-white hover:bg-white/10 rounded-full transition-colors"><i class="fas fa-bell text-lg"></i><span class="absolute top-0 right-0 block h-2 w-2 bg-red-500 rounded-full"></span></button>
+            <div class="relative">
+              <button id="userMenuButton" class="flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 transition-colors">
+                <img id="userProfileImage" src="" alt="Profile" class="h-8 w-8 rounded-full border-2 border-white/20" />
+                <span id="userDisplayName" class="hidden sm:block text-sm font-medium text-white"></span>
+                <i class="fas fa-chevron-down text-blue-200 text-xs"></i>
+              </button>
+              <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 hidden">
+                <div class="px-4 py-2 border-b border-gray-100">
+                  <p id="dropdownUserName" class="text-sm font-medium text-gray-900"></p>
+                  <p id="dropdownUserType" class="text-xs text-gray-500"></p>
+                </div>
+                <a href="profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"><i class="fas fa-user mr-3"></i>Profile</a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"><i class="fas fa-cog mr-3"></i>Settings</a>
+                <div class="border-t border-gray-100 my-1"></div>
+                <button id="logoutButton" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="fas fa-sign-out-alt mr-3"></i>Sign out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 bg-gray-50">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left: Video/cover and details -->
+        <section class="lg:col-span-8 space-y-6">
+          <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+            <img id="courseThumb" class="w-full h-64 object-cover" src="" />
+            <div class="p-6">
+              <h2 id="courseTitle" class="text-2xl font-semibold text-gray-900"></h2>
+              <p id="courseMentor" class="text-gray-600"></p>
+              <div id="courseStats" class="flex items-center gap-4 text-sm text-gray-600 mt-2"></div>
+              <div class="mt-4">
+                <h3 class="font-semibold text-gray-900 mb-2">What you'll learn</h3>
+                <ul id="courseBullets" class="list-disc list-inside text-gray-700 space-y-1"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Curriculum</h3>
+            <ul id="courseCurriculum" class="space-y-2"></ul>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Reviews</h3>
+            <div id="courseReviews" class="space-y-4"></div>
+          </div>
+        </section>
+        <!-- Right: Enroll card and instructor -->
+        <aside class="lg:col-span-4 space-y-6">
+          <div class="bg-white border border-gray-200 rounded-xl p-6">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-2xl font-bold text-gray-900" id="coursePrice">₹0</div>
+              <div class="text-sm text-gray-600" id="courseLearners">0 learners</div>
+            </div>
+            <button id="enrollBtn" class="w-full bg-blue-600 text-white rounded-lg py-3 hover:bg-blue-700">Enroll Now</button>
+            <p class="text-xs text-gray-500 mt-2">30-day refund policy • Lifetime access</p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Instructor</h3>
+            <div class="flex items-center space-x-3">
+              <img id="instructorAvatar" class="w-12 h-12 rounded-full object-cover" src="" />
+              <div>
+                <div id="instructorName" class="font-medium"></div>
+                <div id="instructorRole" class="text-sm text-gray-600"></div>
+              </div>
+            </div>
+            <div id="instructorBio" class="text-sm text-gray-700 mt-3"></div>
+            <a id="instructorProfile" href="#" class="text-blue-600 text-sm mt-2 inline-block">View Profile</a>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/course.js"></script>
+</body>
+</html>

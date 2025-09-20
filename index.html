@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuruSetu - Alumni Social Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .gradient-border {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        .gradient-border-inner {
+            background: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Main App -->
+    <div id="mainApp">
+        <!-- GuruSetu Banner -->
+        <div class="relative h-48 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+            <img src="https://img.freepik.com/free-vector/gradient-class-2023-illustration_52683-111100.jpg?semt=ais_incoming&w=740&q=80" 
+                 alt="Alumni Banner" 
+                 class="w-full h-full object-cover opacity-60">
+            
+            <!-- Gradient overlays for depth -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-indigo-900/60 to-purple-900/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+            
+            <!-- Content -->
+            <div class="absolute inset-0 flex items-center justify-between px-8 md:px-16">
+                <!-- Left side - Main content -->
+                <div class="flex-1">
+                    <div class="max-w-2xl">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-3 text-white leading-tight">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-indigo-200">GuruSetu</span>
+                        </h1>
+                        <p class="text-lg md:text-xl font-medium text-blue-100 mb-4 leading-relaxed">
+                            Empowering Alumni & Students to 
+                            <span class="text-yellow-300 font-semibold">Connect</span>, 
+                            <span class="text-green-300 font-semibold">Learn</span>, and 
+                            <span class="text-pink-300 font-semibold">Grow Together</span>
+                        </p>
+                        <div class="flex items-center space-x-4 text-sm text-blue-200">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span>2,500+ Active Alumni</span>
+                            </div>
+                            <div class="hidden md:flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                <span>5,000+ Students</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right side - Donation section (Alumni only) -->
+                <div id="donationSection" class="hidden md:flex flex-col items-end space-y-4">
+                    <div class="make-a-gift-card">
+                        <p class="text-white text-sm font-medium mb-3">Support Our Community</p>
+                        <button class="donation-btn make-a-gift-btn">
+                            <i class="fas fa-heart"></i>
+                            MAKE A GIFT
+                        </button>
+                        <p class="make-a-gift-subtext">Help us grow stronger together</p>
+                    </div>
+                    
+                    <!-- Quick stats -->
+                    <div class="bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg p-3 text-center">
+                        <div class="text-white text-lg font-bold">₹2.3M+</div>
+                        <div class="text-blue-200 text-xs">Scholarships Funded</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative elements -->
+            <div class="absolute top-4 left-4 w-16 h-16 border-2 border-white/20 rounded-full animate-pulse hidden lg:block"></div>
+            <div class="absolute bottom-4 right-4 w-12 h-12 border border-yellow-400/30 rounded-full animate-bounce hidden lg:block"></div>
+            
+        </div>
+
+        <!-- Blue Navigation Bar -->
+        <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 shadow-lg sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 bg-white rounded-full flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-blue-600 text-lg"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-white">GuruSetu</span>
+                        
+                        <!-- Navigation Links with Events Dropdown -->
+                        <nav class="hidden md:ml-10 md:flex items-center space-x-6">
+                            <a href="index.html" class="text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+
+                            <!-- Events dropdown -->
+                            <div class="relative group">
+                                <a href="events.html" class="inline-flex items-center text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+                                    Events
+                                    <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-0 top-full z-50 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 hidden group-hover:block">
+                                    <a href="events.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Events</a>
+                                    <a href="events.html?filter=upcoming" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Upcoming Events</a>
+                                    <a href="events.html?filter=current" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Current Events</a>
+                                    <a href="events.html?filter=past" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Past Events</a>
+                                    <div class="border-t my-1"></div>
+                                    <a href="gallery.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Gallery</a>
+                                </div>
+                            </div>
+
+                            <a href="mentors.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Mentors</a>
+                            <a href="communities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Communities</a>
+                            <a href="opportunities.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Opportunities</a>
+                            <a href="drishti.html" class="text-blue-200 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Drishti</a>
+                        </nav>
+                    </div>
+
+                    <!-- Search and User Actions -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Search -->
+                        <div class="relative hidden sm:block">
+                            <input type="text" placeholder="Search..." 
+                                   class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 w-64 transition-all">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                                <i class="fas fa-search text-blue-200"></i>
+                            </div>
+                        </div>
+
+                        <!-- Notifications -->
+                        <button class="relative p-2 text-blue-200 hover:text-white hover:bg-white/10 rounded-full transition-colors">
+                            <i class="fas fa-bell text-lg"></i>
+                            <span class="absolute top-0 right-0 block h-2 w-2 bg-red-500 rounded-full"></span>
+                        </button>
+
+                        <!-- User Profile Dropdown -->
+                        <div class="relative">
+                            <button id="userMenuButton" class="flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 transition-colors">
+                                <img id="userProfileImage" src="" alt="Profile" class="h-8 w-8 rounded-full border-2 border-white/20">
+                                <span id="userDisplayName" class="hidden sm:block text-sm font-medium text-white"></span>
+                                <i class="fas fa-chevron-down text-blue-200 text-xs"></i>
+                            </button>
+                            
+                            <!-- Dropdown Menu -->
+                            <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 hidden">
+                                <div class="px-4 py-2 border-b border-gray-100">
+                                    <p id="dropdownUserName" class="text-sm font-medium text-gray-900"></p>
+                                    <p id="dropdownUserType" class="text-xs text-gray-500"></p>
+                                </div>
+                                <a href="profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                    <i class="fas fa-user mr-3"></i>Profile
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                                    <i class="fas fa-cog mr-3"></i>Settings
+                                </a>
+                                <div class="border-t border-gray-100 my-1"></div>
+                                <button id="logoutButton" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                    <i class="fas fa-sign-out-alt mr-3"></i>Sign out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-50">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Left Sidebar -->
+            <aside class="lg:col-span-3 space-y-6">
+                <!-- Communities Section -->
+                <div class="bg-white rounded-lg border border-gray-200">
+                    <div class="px-4 py-3 border-b border-gray-100">
+                        <h2 class="text-gray-900 font-semibold text-base">Communities</h2>
+                    </div>
+                    <div id="communities-section" class="p-4 space-y-3">
+                        <!-- Community items will be added here -->
+                    </div>
+                </div>
+
+                <!-- Following Section -->
+                <div class="bg-white rounded-lg border border-gray-200">
+                    <div class="px-4 py-3 border-b border-gray-100">
+                        <h2 class="text-gray-900 font-semibold text-base">Following</h2>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <!-- Following items will be added here -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Feed -->
+            <section class="lg:col-span-6 space-y-6">
+                <!-- Feed Controls -->
+                <div class="bg-white rounded-lg border border-gray-200">
+                    <div class="px-4 py-4 border-b border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-semibold text-gray-900">Feed</h2>
+                            <div class="flex items-center space-x-2">
+                                <button class="px-3 py-1 text-sm text-gray-600 hover:text-gray-900 transition-colors">Latest</button>
+                                <button class="px-3 py-1 text-sm text-gray-400 hover:text-gray-600 transition-colors">Hot</button>
+                                <button class="px-3 py-1 text-sm text-gray-400 hover:text-gray-600 transition-colors">Top</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Create Post -->
+                    <div class="p-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <input type="text" placeholder="Share something..." class="flex-1 bg-gray-50 border border-gray-200 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 text-sm">
+                            <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded text-sm font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-sm">
+                                Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feed Posts -->
+                <div class="space-y-4" id="feed-container">
+                    <!-- Posts will be dynamically added here -->
+                </div>
+            </section>
+
+            <!-- Right Sidebar -->
+            <aside class="lg:col-span-3 space-y-6">
+                <!-- Opportunities Section -->
+                <div class="bg-white rounded-lg border border-gray-200">
+                    <div class="px-4 py-3 border-b border-gray-100">
+                        <div class="flex items-center justify-between">
+                          <h2 class="text-gray-900 font-semibold text-base">Opportunities</h2>
+                          <a href="opportunities.html" class="text-blue-600 text-xs">View all</a>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <!-- Opportunity items will be added here -->
+                        <div class="text-xs text-gray-600">Explore our dedicated community:</div>
+                        <a href="pages/communities/opportunities-community.html" class="block px-3 py-2 text-sm rounded border hover:bg-blue-50">Opportunities Community</a>
+                    </div>
+                </div>
+
+                <!-- Events Section -->
+                <div class="bg-white rounded-lg border border-gray-200">
+                    <div class="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+                        <h2 class="text-gray-900 font-semibold text-base">Upcoming Events</h2>
+                        <a href="events.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+                    </div>
+                    
+                    <!-- Event Slideshow Preview -->
+                    <div class="relative overflow-hidden">
+                        <div id="miniSlideshow" class="flex transition-transform duration-500">
+                            <!-- Mini slideshow images will be populated by JavaScript -->
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3">
+                            <h3 class="text-white font-medium text-sm">Previous Events Highlights</h3>
+                        </div>
+                        <button id="miniPrevSlide" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors">
+                            <i class="fas fa-chevron-left text-white text-xs"></i>
+                        </button>
+                        <button id="miniNextSlide" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors">
+                            <i class="fas fa-chevron-right text-white text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Featured Alumni Preview -->
+                    <div class="p-4 border-b border-gray-100">
+                        <h3 class="text-gray-800 font-medium text-sm mb-3">Featured Alumni</h3>
+                        <div class="flex -space-x-2 mb-2">
+                            <div id="featuredAlumniAvatars" class="flex -space-x-2">
+                                <!-- Alumni avatars will be populated by JavaScript -->
+                            </div>
+                            <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs text-gray-500 border-2 border-white">
+                                +12
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Successful alumni from various industries</p>
+                    </div>
+
+                    <!-- Event Categories -->
+                    <div class="p-4 border-b border-gray-100">
+                        <div class="flex flex-wrap gap-1">
+                            <button class="event-category-btn active px-2 py-1 rounded text-xs bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors" data-category="all">
+                                All
+                            </button>
+                            <button class="event-category-btn px-2 py-1 rounded text-xs bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors" data-category="upcoming">
+                                Upcoming
+                            </button>
+                            <button class="event-category-btn px-2 py-1 rounded text-xs bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors" data-category="current">
+                                Current
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Event Items -->
+                    <div class="p-4 space-y-3" id="sidebarEvents">
+                        <!-- Event items will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Event Gallery Preview -->
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="text-gray-800 font-medium text-sm mb-3">Event Gallery</h3>
+                        <div class="grid grid-cols-3 gap-2" id="miniEventGallery">
+                            <!-- Gallery preview will be populated by JavaScript -->
+                        </div>
+                        <div class="mt-2 text-center">
+                            <a href="gallery.html" class="text-blue-600 hover:text-blue-700 text-xs">View All Photos</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    </div> <!-- End Main App -->
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

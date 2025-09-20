@@ -1,0 +1,11 @@
+- /index.html
+- /events.html
+- /events.html?filter=upcoming
+- /events.html?filter=current
+- /events.html?filter=past
+- /gallery.html
+- /mentors.html
+- /communities.html
+- /opportunities.html
+- /profile.html
+- /pages/communities/opportunities-community.html
