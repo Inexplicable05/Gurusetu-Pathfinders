@@ -77,6 +77,9 @@ GuruSetu05/
 - **Layout**: Adjust the grid columns in the main content area
 - **Components**: Customize individual section styling in `styles.css`
 
+## For login use the following id:
+`email:` :sarah@alumni.edu
+`password` : alumni123
 ## 📊 Sample Data Included
 
 - **6 Communities** with varying member counts and activity status
